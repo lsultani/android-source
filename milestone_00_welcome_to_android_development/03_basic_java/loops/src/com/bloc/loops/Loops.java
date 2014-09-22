@@ -10,7 +10,7 @@ public class Loops extends Object {
 		boolean[] someBools = {true, false, true, true, false, true, false, false};
 		boolean temp = false;
 
-		//********************************** Starts Here *********************************
+		/********************************** Starts Here *********************************
 		temp = someBools[7];
 		someBools[7] = someBools[0];
 		someBools[0] = temp;
@@ -26,14 +26,20 @@ public class Loops extends Object {
 		temp = someBools[4];
 		someBools[4] = someBools[3];
 		someBools[3] = temp;
-		//********************************** Ends Here ***********************************
+		//********************************** Ends Here ***********************************/
 		
 
 		//********************************************************************************
 		// ASSIGNMENT:
 		// Replace the operations above with a while loop
 		//********************************************************************************
-
+		int i = 0;
+		while (someBools.length > i){
+			temp = someBools[someBools.length - i];
+			someBools[someBools.length - i] = someBools[i];
+			someBools[i] = temp;
+			i++;
+		}
 
 		if (testBools(someBools)) {
 			System.out.print("Your booleans are in proper order!\n");
@@ -46,7 +52,7 @@ public class Loops extends Object {
 		// This is known as an in-line conditional
 		// learn more here: http://www.cafeaulait.org/course/week2/43.html
 
-		//********************************** Starts Here *********************************
+		/********************************** Starts Here *********************************
 		numArray[0] = !someBools[0] ? 1 : 0;
 		numArray[1] = !someBools[1] ? 1 : 0;
 		numArray[2] = !someBools[2] ? 1 : 0;
@@ -54,9 +60,12 @@ public class Loops extends Object {
 		numArray[4] = !someBools[4] ? 1 : 0;
 		numArray[5] = !someBools[5] ? 1 : 0;
 		numArray[6] = !someBools[6] ? 1 : 0;
-		numArray[7] = !someBools[7] ? 1 : 0;
-		//********************************** Ends Here ***********************************
+		numArray[7] = !someBools[7] ? 1 : 0; 
+		//********************************** Ends Here ***********************************/
 
+		for (i = 0; i < numArray.length; i++) {
+    		numArray[i] = !someBools[i] ? 1 : 0;
+		}
 
 		//********************************************************************************
 		// ASSIGNMENT:
