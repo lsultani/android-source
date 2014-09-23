@@ -33,11 +33,21 @@ public class Loops extends Object {
 		// ASSIGNMENT:
 		// Replace the operations above with a while loop
 		//********************************************************************************
+		
+		/* NOTES: 
+		Its a 0 base index so someBools.length = 8, in order 
+		get 7 you must subtract 1 to the length or create a variable
+		that holds the number 7. Simpler form would be to cut 
+		in half someBool by dividing the .length by 2
+		*/
+
 		int i = 0;
-		while (someBools.length > i){
-			temp = someBools[someBools.length - i];
-			someBools[someBools.length - i] = someBools[i];
+		int sBoolsLength = someBools.length - 1;
+		while (sBoolsLength > i) {
+			temp = someBools[sBoolsLength];
+			someBools[sBoolsLength] = someBools[i];
 			someBools[i] = temp;
+			sBoolsLength--; //decrement sBoolsLength
 			i++;
 		}
 
