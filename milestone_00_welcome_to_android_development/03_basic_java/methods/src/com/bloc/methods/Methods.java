@@ -2,6 +2,8 @@ package com.bloc.methods;
 
 import java.lang.reflect.Method;
 
+import java.util.Arrays;
+
 public class Methods extends Object {
 
 	// DO NOT MODIFY BELOW
@@ -30,7 +32,9 @@ public class Methods extends Object {
 		/************************************************
 		 * Your work goes here
 		 ************************************************/
-
+			if (original == false) {
+				return true;
+			} 
 		// You are free to modify the return statement
 		return false;
 	}
@@ -53,8 +57,10 @@ public class Methods extends Object {
 		/************************************************
 		 * Your work goes here
 		 ************************************************/
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = numbers[i] * -1;
+		}
 	}
-
 
 	/*
 	 * This method returns an array of booleans based on
@@ -81,9 +87,13 @@ public class Methods extends Object {
 		/************************************************
 		 * Your work goes here
 		 ************************************************/
-
+		boolean[] boolsArray;
+		boolsArray = new boolean[someNumbers.length];
+		for (int i = 0; i < someNumbers.length; i++) {
+			boolsArray[i] = (someNumbers[i] >= floor) ? true : false;
+		}
 		// You are free to modify the return statement
-		return new boolean [0];
+		return boolsArray;
 	}
 
 	/*
@@ -106,9 +116,15 @@ public class Methods extends Object {
 		/************************************************
 		 * Your work goes here
 		 ************************************************/
-
+		Arrays.sort(someNumbers);
+		int minNum = someNumbers[0];
+		int maxNum = someNumbers[someNumbers.length - 1];
+		int[] minMax;
+		minMax = new int[2];
+		minMax[0] = minNum;
+		minMax[1] = maxNum;
 		// You are free to modify the return statement
-		return new int[2];
+		return minMax;
 	}
 
 
