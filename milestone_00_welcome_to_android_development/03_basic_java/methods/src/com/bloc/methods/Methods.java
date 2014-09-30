@@ -115,7 +115,7 @@ public class Methods extends Object {
 	public int[] getMinAndMax(int[] someNumbers) {
 		/************************************************
 		 * Your work goes here
-		 ************************************************/
+		 
 		Arrays.sort(someNumbers);
 		int minNum = someNumbers[0];
 		int maxNum = someNumbers[someNumbers.length - 1];
@@ -123,7 +123,20 @@ public class Methods extends Object {
 		minMax = new int[2];
 		minMax[0] = minNum;
 		minMax[1] = maxNum;
-		// You are free to modify the return statement
+		************************************************/  
+		    
+		int minNum = someNumbers[0];
+		int maxNum = someNumbers[0]; 
+		int[] minMax = {minNum, maxNum};  
+	 
+		for (int i = 0; i < someNumbers.length; i++) {   
+			if (someNumbers[i] < minNum) {
+				minNum = someNumbers[i];   
+			} else if (someNumbers[i] > maxNum) {
+				maxNum = someNumbers[i];  
+			}
+		}           
+		        
 		return minMax;
 	}
 
