@@ -13,6 +13,11 @@ class Ensemble extends Object {
 	 * @param artists variable length artists
 	 */
 	// CONSTRUCTOR CODE GOES HERE
+     Ensemble(Artist[] artists) { 
+			this(null, artists);
+			//Ensemble takes name and artist, name being first param, 
+			//set it to null by default so it knows how to deal with it
+	    }
 
 	/*
 	 * Second Constructor
@@ -23,5 +28,14 @@ class Ensemble extends Object {
 	 * @param name the name of the group
 	 * @param artists variable length artists
 	 */
-	// CONSTRUCTOR CODE GOES HERE
+	// CONSTRUCTOR CODE GOES HERE  
+	Ensemble(String name, Artist[] artists) {
+	        if (name == null) {  
+				//use first and last from first Artist array
+				name = artists[0].mFirstName + artists[0].mLastName;
+			}
+			mName = name;
+			mArtists  = artists;
+	    }
+	
 }

@@ -10,6 +10,12 @@ class PopSong extends Song {
 	 *				 year and weeks on billboard
 	 */
 	// CONSTRUCTOR CODE GOES HERE
+     PopSong() {                                          
+			this.mEnsemble = new Ensemble(new Artist[] {new Artist("The", " Doors")});      
+			this.mTitle ="Light My Fire";
+			this.mYearReleased = 1967; 
+			this.mWeeksOnBillboard = 3;
+    }
 
 	/*
 	 * Partial Constructor
@@ -18,6 +24,11 @@ class PopSong extends Song {
 	 * @param title the song title
 	 */
 	// CONSTRUCTOR CODE GOES HERE
+     PopSong(Ensemble ensemble, String title) { 
+    	this.mEnsemble = ensemble;
+    	this.mTitle = title;  
+		this.mYearReleased = 0;  
+	}
 
 	/*
 	 * Full Song Constructor
@@ -27,7 +38,12 @@ class PopSong extends Song {
 	 * @param yearReleased the year the song was released
 	 */
 	// CONSTRUCTOR CODE GOES HERE
-
+      PopSong(Ensemble ensemble, String title, int yearReleased) { 
+		this.mEnsemble = ensemble;
+		this.mTitle = title;  
+		this.mYearReleased = yearReleased;
+		this.mWeeksOnBillboard = 0;  
+	}
 	/*
 	 * Full PopSong Constructor
 	 * @param ensemble the ensemble responsible
@@ -36,5 +52,11 @@ class PopSong extends Song {
 	 * @param weeksOnBillboard number of weeks this song lasted on the
 	 *		  				   Billboard's top 100
 	 */
-	// CONSTRUCTOR CODE GOES HERE
+	// CONSTRUCTOR CODE GOES HERE 
+	PopSong(Ensemble ensemble, String title, int yearReleased, int weeksOnBillboard) { 
+		this.mEnsemble = ensemble;
+		this.mTitle = title;  
+		this.mYearReleased = yearReleased;
+		this.mWeeksOnBillboard = weeksOnBillboard;  
+	}
 }
