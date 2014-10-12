@@ -1,13 +1,15 @@
 package com.bloc.securitypackages;
 
 // YOUR IMPORTS GO HERE
-// import com.bloc.{your_package};   
-import com.bloc.securitypackages.apples.*;
+// import com.bloc.{your_package}; 
+//import classes that are refered here  
+import com.bloc.securitypackages.apples.*; //.* imports all
 import com.bloc.securitypackages.citrus.*;
 import com.bloc.securitypackages.citrus.Orange;   
 /* 
-	Because there are two Orange classes, you can import one of them, 
-	but the other must be referred to by its full classpath to avoid name collisions    
+	Because there are two Orange classes, you can import one of them in this case 
+	import com.bloc.securitypackages.citrus.Orange;, but the other must be referred 
+	to by its full classpath to avoid name collisions, colors[4] = new com.bloc.securitypackages.colors.Orange();     
 */
 
 
