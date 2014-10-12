@@ -1,4 +1,4 @@
-package com.bloc.securitypackages;
+package com.bloc.securitypackages; 
 
 public abstract class Fruit extends Object {
 	// The name of the fruit
@@ -27,42 +27,42 @@ public abstract class Fruit extends Object {
 		this(name, calories, color, 0d);
 	}
 
-	Fruit(String name, int calories, Color color, double weight) {
+	protected Fruit(String name, int calories, Color color, double weight) {
 		this.mName = name;
 		this.mCalories = calories;
 		this.mColor = color;
 		this.mWeight = weight;
 	}
 
-	private String getName() {
+	public String getName() {
 		return mName;
 	}
 
-	private void setName(String name) {
+	protected void setName(String name) {
 		mName = name;
 	}
 
-	int getCalories() {
+	public int getCalories() {
 		return mCalories;
 	}
 
-	void setCalories(int calories) {
+	protected void setCalories(int calories) {
 		mCalories = calories;
 	}
 
-	private Color getColor() {
+	public Color getColor() {
 		return mColor;
 	}
 
-	private void setColor(Color color) {
+	protected void setColor(Color color) {
 		mColor = color;
 	}
 
-	double getWeight() {
+	protected double getWeight() {
 		return mWeight;
 	}
 
-	private void setWeight(double weight) {
+	protected void setWeight(double weight) {
 		mWeight = weight;
 	}
 }
