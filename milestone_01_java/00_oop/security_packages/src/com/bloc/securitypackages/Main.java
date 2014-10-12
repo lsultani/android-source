@@ -5,6 +5,11 @@ package com.bloc.securitypackages;
 import com.bloc.securitypackages.apples.*;
 import com.bloc.securitypackages.citrus.*;
 import com.bloc.securitypackages.citrus.Orange;   
+/* 
+	Because there are two Orange classes, you can import one of them, 
+	but the other must be referred to by its full classpath to avoid name collisions    
+*/
+
 
 public class Main extends Object {
 
