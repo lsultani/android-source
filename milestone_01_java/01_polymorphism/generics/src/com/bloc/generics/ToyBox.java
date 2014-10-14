@@ -11,8 +11,8 @@ class ToyBox extends Object {
 		super();
 		mToys = toys;
 	}
-
-	public void addToy(Toy<?> newToy) {
+    //use to add toy to toybox
+	public void addToy(Toy<?> newToy) {  
 		Toy<?>[] toysTemp = new Toy<?>[mToys.length + 1];
 		for (int i = 0; i < mToys.length; i++) {
 			toysTemp[i] = mToys[i];

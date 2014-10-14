@@ -1,8 +1,6 @@
 package com.bloc.interfaces.people;
 
-import com.bloc.interfaces.people.hobbies.*;
-
-public abstract class Person extends Object implements Driver, SalsaDancer, Skydiver {
+public abstract class Person extends Object {
 	// First name
 	private String mFirstName;
 	// Sur name
