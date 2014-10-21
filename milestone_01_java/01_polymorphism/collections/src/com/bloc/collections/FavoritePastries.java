@@ -16,16 +16,19 @@ import java.util.*;
  * 1 Star Pastries: Pot Pie
  *
  * A pastry may not have duplicate entries
- */
+ */        
+
 public class FavoritePastries {
 
 	/*
 	 * Use a HashMap to store the relationship
 	 * between rating and pastry
 	 */
+    private HashMap<Pastry, Integer> pastryMap; 
 
 	public FavoritePastries() {
-		// WORK HERE
+		// WORK HERE  
+		pastryMap = new HashMap<Pastry, Integer>();
 	}
 
 	/* 
@@ -42,7 +45,8 @@ public class FavoritePastries {
 	 * @return nothing
 	 */
 	public void addPastry(Pastry pastry, int rating) {
-		// WORK HERE
+		// WORK HERE     
+		pastryMap.put(pastry, rating);
 	}
 
 	/*
@@ -57,7 +61,12 @@ public class FavoritePastries {
 	 */
 	public boolean removePastry(Pastry pastry) {
 		// WORK HERE
-		return false;
+		if (pastryMap.containsKey(pastry)) {
+						pastryMap.remove(pastry);
+					return true;
+				} else {
+					return false;
+				}
 	}
 
 	/*
@@ -74,8 +83,12 @@ public class FavoritePastries {
 	 */
 	public int getRatingForPastry(Pastry pastry) {
 		// WORK HERE
-		return -1;
-	}
+				if (pastryMap.containsKey(pastry)) {
+					return pastryMap.get(pastry);
+				} else {
+					return -1;
+				}
+			}
 
 	/*
 	 * Return a Set of all the Pastries with a given
@@ -93,7 +106,17 @@ public class FavoritePastries {
 	 */
 	public Collection<Pastry> getPastriesForRating(int rating) {
 		// WORK HERE
-		return null;
-	}
-
+		  Set<Pastry> pastries = new HashSet<Pastry>();  //create new HashSet to store filtered list               
+			for (Pastry pastry : pastryMap.keySet()) { //shorthand for in loop  
+				/*  what it does:
+				 for (int i = 0; i < pastries.size; i++) {
+					Pastry pastry = pastries[i];
+				} 
+				*/
+					if (pastryMap.get(pastry) == rating) {
+						pastries.add(pastry); //add results to new HashSet
+            		}
+			}  
+			return pastries;
+		}    
 }
