@@ -5,8 +5,21 @@ import java.util.Random;
 public class Main extends Object {
 
 	public static void main(String [] args) {
-		tryGetMax();
-		tryRemove();
+        try {
+            tryGetMax();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Numbers must be a valud array");
+        } catch (IllegalStateException e) {
+            System.out.println("All numbers in array must be valid");
+        }
+
+        try {
+            tryRemove();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Original array must be valid");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("index must be between 0 and original.length - 1");
+        }
 
 		System.out.println("/************************/");
 		System.out.println("/*                      */");
