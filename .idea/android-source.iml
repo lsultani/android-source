@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../android-source/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../android-source/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../android-source/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../android-source/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../android-source/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../android-source/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../android-source/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/01_development_environment/MyFirstAndroidApplication" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/milestone_00_welcome_to_android_development" />
+      <excludeFolder url="file://$MODULE_DIR$/milestone_01_java" />
+      <excludeFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/02_first_app" />
+      <excludeFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/10_style" />
+      <excludeFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/12_drawables" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 20 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
