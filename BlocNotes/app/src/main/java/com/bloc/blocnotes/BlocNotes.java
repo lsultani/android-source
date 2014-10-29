@@ -27,6 +27,8 @@ public class BlocNotes extends Activity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
+    private NoteFragment mNoteFragment;
+
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -45,6 +47,9 @@ public class BlocNotes extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //instantiate NoteFragment
+        mNoteFragment = new NoteFragment();
     }
 
     @Override
