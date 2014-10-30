@@ -7,7 +7,7 @@ import android.app.Fragment;
  */
 public class NoteFragment extends Fragment {
 
-    NoteFragment() {
+    public NoteFragment() {
         // Emptiness
     }
 
