@@ -23,7 +23,9 @@ public class NoteFragment extends Fragment {
 
         Button button = new Button(getActivity());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 30);
+        RelativeLayout relativeLayout = new RelativeLayout(getActivity());
         relativeLayout.addView(button, params);
+        return button;
         //View rootView = inflater.inflate(R.layout.notefragment, container, false);
         //return rootView;
     }
