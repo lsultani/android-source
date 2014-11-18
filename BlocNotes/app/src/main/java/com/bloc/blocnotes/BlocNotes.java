@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -87,6 +89,9 @@ public class BlocNotes extends Activity
             case 5:
                 mTitle = getString(R.string.title_section5);
                 break;
+            case 6:
+                mTitle = getString(R.string.action_add_notebook);
+                break;
         }
     }
 
@@ -116,11 +121,22 @@ public class BlocNotes extends Activity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+
+            case R.id.action_erase:
+                eraseNote();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    private void eraseNote() {
+       //how to erase?
+
     }
 
     /**
