@@ -136,7 +136,10 @@ public class BlocNotes extends Activity
 
     private void eraseNote() {
        //how to erase?
-
+        EditText editText = (EditText) findViewById(R.id.noteText);
+        editText.setText(" ");
+        editText.setHint("@string/type_here");
+       // setContentView(R.layout.notefragment);
     }
 
     /**

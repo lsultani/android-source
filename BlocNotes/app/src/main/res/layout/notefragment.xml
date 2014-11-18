@@ -7,7 +7,7 @@
         android:id="@+id/noteText"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:hint="Type here..."
+        android:hint="@string/type_here"
         android:singleLine="false"
         android:gravity="top"
         android:inputType="textMultiLine"
