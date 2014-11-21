@@ -10,8 +10,8 @@
         android:hint="@string/type_here"
         android:singleLine="false"
         android:gravity="top"
-        android:inputType="textMultiLine"
         android:padding="20dp"
-        />
+        android:inputType="textMultiLine"
+        android:nestedScrollingEnabled="false" />
 
 </RelativeLayout>

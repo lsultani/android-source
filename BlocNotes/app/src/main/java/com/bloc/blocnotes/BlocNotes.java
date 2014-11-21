@@ -19,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class BlocNotes extends Activity
@@ -89,9 +90,6 @@ public class BlocNotes extends Activity
             case 5:
                 mTitle = getString(R.string.title_section5);
                 break;
-            case 6:
-                mTitle = getString(R.string.action_add_notebook);
-                break;
         }
     }
 
@@ -125,8 +123,14 @@ public class BlocNotes extends Activity
             case R.id.action_settings:
                 return true;
 
+        // add to action bar
             case R.id.action_erase:
                 eraseNote();
+                return true;
+
+        // add to sliding drawer menu
+            case R.id.action_addNotebook:
+                Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show();
                 return true;
 
             default:
