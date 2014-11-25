@@ -13,4 +13,9 @@
         android:title="@string/action_erase"
         android:showAsAction="always"
         android:orderInCategory="101" />
+    <item android:id="@+id/action_dialog"
+        android:orderInCategory="102"
+        android:icon="@drawable/ic_menu_view"
+        android:showAsAction="always"
+        android:title="@string/action_dialog" />
 </menu>

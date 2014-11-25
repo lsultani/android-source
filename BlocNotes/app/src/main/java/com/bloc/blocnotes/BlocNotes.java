@@ -133,6 +133,12 @@ public class BlocNotes extends Activity
                 Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show();
                 return true;
 
+            case R.id.action_dialog:
+                //show view
+               CustomStyleDialogFragment dialog = new CustomStyleDialogFragment();
+               dialog.show(this.getFragmentManager(), null); //passing this activity being BlocNotes
+               return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
