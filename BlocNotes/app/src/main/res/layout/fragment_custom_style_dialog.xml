@@ -1,15 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bloc.blocnotes.CustomStyleDialogFragment">
+    tools:context="com.bloc.blocnotes.CustomStyleDialogFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Spinner
-    android:id="@+id/font_button"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Customize"/>
+        <Spinner
+            android:id="@+id/font_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Customize"
+            android:layout_gravity="center_vertical|top" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:id="@+id/closeDialogButton"
+       android:onClick="closeDialog"/>
 
 
-</FrameLayout>
+</LinearLayout>

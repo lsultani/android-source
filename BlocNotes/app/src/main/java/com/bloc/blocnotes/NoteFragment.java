@@ -1,18 +1,19 @@
 package com.bloc.blocnotes;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 /**
  * Created by lesliesultani on 10/28/14.
  */
-public class NoteFragment extends Fragment {
+public class NoteFragment extends Fragment implements CustomStylesObserver {
+
 
     private EditText editText;
 
@@ -50,6 +51,11 @@ public class NoteFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("mytext", editText.getText().toString());
+    }
+
+    public void setFontType(String selectedFont){
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), selectedFont);
+        editText.setTypeface(font);
     }
 
 

@@ -17,10 +17,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_dialog">Custom Style Dialog</string>
     <string-array name="fonts_array">
-        <item>System Font</item>
-        <item>Helvetica</item>
-        <item>Helvetica-Neue</item>
-        <item>Impact</item>
+        <item>Helvetica_Reg</item>
+        <item>HelveticaNeue_Lt</item>
+        <item>impact</item>
     </string-array>
 
 </resources>

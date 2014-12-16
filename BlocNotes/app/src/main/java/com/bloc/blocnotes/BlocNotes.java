@@ -1,29 +1,24 @@
 package com.bloc.blocnotes;
 
+import android.app.ActionBar;
 import android.app.Activity;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class BlocNotes extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class BlocNotes extends Activity implements
+        NavigationDrawerFragment.NavigationDrawerCallbacks, CustomStylesObserver {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -31,6 +26,8 @@ public class BlocNotes extends Activity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private NoteFragment mNoteFragment;
+
+    public CustomStyleDialogFragment dialog;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -135,7 +132,8 @@ public class BlocNotes extends Activity
 
             case R.id.action_dialog:
                 //show view
-               CustomStyleDialogFragment dialog = new CustomStyleDialogFragment();
+               dialog = new CustomStyleDialogFragment();
+               dialog.listenFontChange(this);
                dialog.show(this.getFragmentManager(), null); //passing this activity being BlocNotes
                return true;
 
@@ -151,6 +149,12 @@ public class BlocNotes extends Activity
         editText.setHint("@string/type_here");
        // setContentView(R.layout.notefragment);
     }
+
+    public void setFontType(String selectedFont){
+      mNoteFragment.setFontType(selectedFont);
+    }
+
+
 
     /**
      * A placeholder fragment containing a simple view.
