@@ -1,22 +1,22 @@
 ## Security And Packages
 
-Open your command prompt and `cd` into this README's directory (security_packages). The sample code **DOES NOT COMPILE**. Fix the security and package organization of this project. You will need to move or modify all files, including `Main.java`.
+Open your command prompt and `cd` into this README's directory (security_packages). The sample code **DOES NOT COMPILE**. Fix the access and package organization of this project. You will need to move or modify all files, including `Main.java`.
 
-After you've finished, compile your code by running the following command:
+Begin by attempting to compile the application using the following command:
 
 ``` bash
 $ javac -d bin src/com/bloc/securitypackages/*/*.java src/com/bloc/securitypackages/*.java
 ```
 
-After it compiles successfully, `cd` into the bin directory:
+All of the compilation errors may be fixed by importing and assigning proper access modifiers. Continue to tweak the project until it compiles successfully. Then `cd` into the `bin/` directory:
 
-``` bash
+```bash
 $ cd bin/
 ```
 
 From within bin, execute your code by running the following command:
 
-``` bash
+```bash
 $ java com.bloc.securitypackages.Main
 ```
 
