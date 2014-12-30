@@ -10,8 +10,9 @@
         android:text="Hello, world!"
         android:textSize="26sp"
         android:gravity="center"
-        android:textColor="@color/text_primary"
-        android:layout_gravity="center"/>
+        android:textColor="@color/red"
+        android:layout_gravity="center"
+ />
 
 
 </LinearLayout>

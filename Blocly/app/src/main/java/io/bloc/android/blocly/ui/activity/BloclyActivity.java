@@ -2,7 +2,9 @@ package io.bloc.android.blocly.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import io.bloc.android.blocly.BloclyApplication;
 import io.bloc.android.blocly.R;
 
 /**
@@ -18,5 +20,8 @@ public class BloclyActivity extends Activity {
         // time we build an application or whenever a new asset is created. R.layout.activity_blocly
         // refers to the unique number generated specifically for the activity_blocly.xml layout file.
         setContentView(R.layout.activity_blocly);
+        Toast.makeText(this,
+                BloclyApplication.getSharedDataSource().getFeeds().get(0).getTitle(),
+                Toast.LENGTH_LONG).show();
     }
 }
