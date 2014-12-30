@@ -2,7 +2,12 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Window Background -->
+        <!-- only added the android:windowBackground color because android:colorPrimary,
+        android:colorPrimaryDark and android:colorAccent were introduced in v21, they do not exist
+        in earlier versions and therefore will fail to compile if we include them. This file supports
+        older versions of android -->
+        <item name="android:windowBackground">@color/windowBackground</item>
     </style>
 
 </resources>

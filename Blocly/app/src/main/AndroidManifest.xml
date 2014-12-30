@@ -5,6 +5,9 @@
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
         android:theme="@style/AppTheme">
+        <!-- Our theme was specified on this line, android:theme="@style/AppTheme". When the
+application is deployed to a specific device, AppTheme will either refer to the theme found
+in values/ or values-v21/ depending on the version of Android running on the device. -->
 
         <activity android:name=".ui.activity.BloclyActivity">
             <intent-filter>
