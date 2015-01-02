@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Hello, world!"
@@ -12,7 +12,14 @@
         android:gravity="center"
         android:textColor="@color/red"
         android:layout_gravity="center"
- />
+        android:id="@+id/myText"
+ /> -->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_activity_blocly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
