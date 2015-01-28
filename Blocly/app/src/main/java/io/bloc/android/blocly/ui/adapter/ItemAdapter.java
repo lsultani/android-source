@@ -1,10 +1,13 @@
 package io.bloc.android.blocly.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import io.bloc.android.blocly.BloclyApplication;
 import io.bloc.android.blocly.R;
@@ -12,10 +15,11 @@ import io.bloc.android.blocly.api.DataSource;
 import io.bloc.android.blocly.api.model.RssFeed;
 import io.bloc.android.blocly.api.model.RssItem;
 
-/**
- * Created by lesliesultani on 1/1/15.
- */
+
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterViewHolder> {
+
+    // #11
+    private static String TAG = ItemAdapter.class.getSimpleName();
 
     // #6 a required method which asks us to create and return a ViewHolder, specifically one matching
     // the class we supplied as our typed-parameter, ItemAdapterViewHolder. To create the View from XML,
@@ -66,6 +70,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
             title.setText(rssItem.getTitle());
             content.setText(rssItem.getDescription());
         }
+
+
     }
+
+    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+        Log.e(TAG, "onLoadingFailed: " + failReason.toString() + " for URL: " + imageUri);
+    }
+
+
 
 }
