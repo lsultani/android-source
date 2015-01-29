@@ -5,18 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import io.bloc.android.blocly.BloclyApplication;
 import io.bloc.android.blocly.R;
 import io.bloc.android.blocly.api.DataSource;
-import io.bloc.android.blocly.api.model.RssFeed;
-import io.bloc.android.blocly.api.model.RssItem;
 
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapterViewHolder> {
 
     // #11
     private static String TAG = ItemAdapter.class.getSimpleName();
@@ -51,7 +48,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
     // maintaining control of a single cell in the list. As the user scrolls, a single ViewHolder may be
     // reused to represent several items in the list. As you scroll an item's View off screen, it is refreshed
     // and re-inserted at the bottom of the screen, recycling indeed.
-    class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
+   /* class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
         TextView feed;
@@ -72,7 +69,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         }
 
 
-    }
+    }*/
 
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
         Log.e(TAG, "onLoadingFailed: " + failReason.toString() + " for URL: " + imageUri);

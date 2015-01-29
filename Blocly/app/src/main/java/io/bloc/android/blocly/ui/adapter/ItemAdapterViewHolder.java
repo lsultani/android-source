@@ -2,6 +2,7 @@ package io.bloc.android.blocly.ui.adapter;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoad
         title.setText(rssItem.getTitle());
         content.setText(rssItem.getDescription());
         imageURL = rssItem.getImageUrl();
+        Log.d("ItemAdapterViewHolder", "ImageURL = " + imageURL + " and rss image = " + rssItem.getImageUrl());
         if (imageURL != null) {
 // #8
             headerWrapper.setVisibility(View.VISIBLE);
