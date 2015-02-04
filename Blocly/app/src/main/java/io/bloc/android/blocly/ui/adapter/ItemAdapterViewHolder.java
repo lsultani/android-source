@@ -2,7 +2,10 @@ package io.bloc.android.blocly.ui.adapter;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,15 +18,17 @@ import io.bloc.android.blocly.R;
 import io.bloc.android.blocly.api.model.RssFeed;
 import io.bloc.android.blocly.api.model.RssItem;
 
-class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoadingListener, View.OnClickListener {
+class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoadingListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 
+    private static final String TAG = "";
     TextView title;
     TextView feed;
     TextView content;
     View headerWrapper;
     ImageView headerImage;
-    // #6
+    CheckBox archiveCheckbox;
+    CheckBox favoriteCheckbox;
     String imageURL;
     RssItem rssItem;
 
@@ -35,8 +40,13 @@ class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoad
 
         headerWrapper = itemView.findViewById(R.id.fl_rss_item_image_header);
         headerImage = (ImageView) headerWrapper.findViewById(R.id.iv_rss_item_image);
+        archiveCheckbox = (CheckBox) itemView.findViewById(R.id.cb_rss_item_check_mark);
+        favoriteCheckbox = (CheckBox) itemView.findViewById(R.id.cb_rss_item_favorite_star);
 
         itemView.setOnClickListener(this);
+
+        archiveCheckbox.setOnCheckedChangeListener(this);
+        favoriteCheckbox.setOnCheckedChangeListener(this);
     }
 
     void update(RssFeed rssFeed, RssItem rssItem) {
@@ -82,5 +92,10 @@ class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoad
     @Override
     public void onClick(View view) {
         Toast.makeText(view.getContext(), rssItem.getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Log.v(TAG, "Checked changed to: " + isChecked);
     }
 }
