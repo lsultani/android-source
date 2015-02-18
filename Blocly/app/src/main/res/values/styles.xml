@@ -1,13 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Window Background -->
-        <!-- only added the android:windowBackground color because android:colorPrimary,
-        android:colorPrimaryDark and android:colorAccent were introduced in v21, they do not exist
-        in earlier versions and therefore will fail to compile if we include them. This file supports
-        older versions of android -->
         <item name="android:windowBackground">@color/windowBackground</item>
+
+        <!-- DrawerArrowStyle -->
+        <item name="drawerArrowStyle">@style/DrawerArrow</item>
+        <item name="colorPrimary">@color/primary</item>
+
+
+        <!-- AppCompat Colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="DrawerArrow" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/actionBarItems</item>
     </style>
 
     <style name="Headline">
