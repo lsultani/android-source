@@ -8,68 +8,87 @@ import android.view.ViewGroup;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 
-import io.bloc.android.blocly.BloclyApplication;
+import java.lang.ref.WeakReference;
+
 import io.bloc.android.blocly.R;
-import io.bloc.android.blocly.api.DataSource;
+import io.bloc.android.blocly.api.model.RssFeed;
+import io.bloc.android.blocly.api.model.RssItem;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapterViewHolder> {
 
-    // #11
+    public static interface DataSource {
+        // #1
+        public RssItem getRssItem(ItemAdapter itemAdapter, int position);
+        public RssFeed getRssFeed(ItemAdapter itemAdapter, int position);
+        public int getItemCount(ItemAdapter itemAdapter);
+    }
+
+    public static interface Delegate {
+        public void onItemClicked(ItemAdapter itemAdapter, RssItem rssItem);
+    }
+
     private static String TAG = ItemAdapter.class.getSimpleName();
 
-    // #6 a required method which asks us to create and return a ViewHolder, specifically one matching
-    // the class we supplied as our typed-parameter, ItemAdapterViewHolder. To create the View from XML,
-    // we use the LayoutInflater class which is capable of converting XML layouts into displayable,
-    // programmatic View objects.
+    private RssItem expandedItem = null;
+    private WeakReference<Delegate> delegate;
+    private WeakReference<DataSource> dataSource;
+
     @Override
     public ItemAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int index) {
         View inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rss_item, viewGroup, false);
         return new ItemAdapterViewHolder(inflate);
     }
 
-    // #7 we implement another required Adapter method. A bind action is requested when an index needs
-    // its data mapped to a given ViewHolder. As the user scrolls down, they scroll to higher indexes.
-    // They begin at the top with 0 and may scroll as far down as the number provided at #8 less one,
-    // which is 9 in our case.
     @Override
     public void onBindViewHolder(ItemAdapterViewHolder itemAdapterViewHolder, int index) {
-        DataSource sharedDataSource = BloclyApplication.getSharedDataSource();
-        itemAdapterViewHolder.update(sharedDataSource.getFeeds().get(0), sharedDataSource.getItems().get(index));
+        if (getDataSource() == null) {
+            return;
+        }
+
+        RssItem rssItem = getDataSource().getRssItem(this, index);
+        RssFeed rssFeed = getDataSource().getRssFeed(this, index);
+        itemAdapterViewHolder.update(rssFeed, rssItem);
     }
 
     // #8
     @Override
     public int getItemCount() {
-        return BloclyApplication.getSharedDataSource().getItems().size();
+        if (getDataSource() == null) {
+            return 0;
+        }
+        return getDataSource().getItemCount(this);
     }
 
-    // #9 where we've created an inner-class named ItemAdapterViewHolder. A ViewHolder is responsible for
-    // maintaining control of a single cell in the list. As the user scrolls, a single ViewHolder may be
-    // reused to represent several items in the list. As you scroll an item's View off screen, it is refreshed
-    // and re-inserted at the bottom of the screen, recycling indeed.
-   /* class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
-
-        TextView title;
-        TextView feed;
-        TextView content;
-
-        public ItemAdapterViewHolder(View itemView) {
-            super(itemView);
-// #10 itemView is a reference to an inflated version of rss_item.xml, therefore it is the parent of all three TextViews we established earlier in our XML layout. We take this moment to find them by searching for Views associated with their resource identifiers – generated earlier using android:id="@+id/tv_…". We need references to these Views such that we can programmatically change their text during the update(…) method.
-            title = (TextView) itemView.findViewById(R.id.tv_rss_item_title);
-            feed = (TextView) itemView.findViewById(R.id.tv_rss_item_feed_title);
-            content = (TextView) itemView.findViewById(R.id.tv_rss_item_content);
+    public DataSource getDataSource() {
+        if (dataSource == null) {
+            return null;
         }
+        return dataSource.get();
+    }
 
-        void update(RssFeed rssFeed, RssItem rssItem) {
-            feed.setText(rssFeed.getTitle());
-            title.setText(rssItem.getTitle());
-            content.setText(rssItem.getDescription());
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = new WeakReference<DataSource>(dataSource);
+    }
+
+    public Delegate getDelegate() {
+        if (delegate == null) {
+            return null;
         }
+        return delegate.get();
+    }
 
+    public void setDelegate(Delegate delegate) {
+        this.delegate = new WeakReference<Delegate>(delegate);
+    }
 
-    }*/
+    public RssItem getExpandedItem() {
+        return expandedItem;
+    }
+
+    public void setExpandedItem(RssItem expandedItem) {
+        this.expandedItem = expandedItem;
+    }
 
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
         Log.e(TAG, "onLoadingFailed: " + failReason.toString() + " for URL: " + imageUri);

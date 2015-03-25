@@ -77,6 +77,7 @@ class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoad
         } else {
             headerWrapper.setVisibility(View.GONE);
         }
+        animateContent(getExpandedItem() == rssItem);
     }
 
     @Override
@@ -104,11 +105,9 @@ class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoad
     public void onClick(View view) {
        // Toast.makeText(view.getContext(), rssItem.getTitle(), Toast.LENGTH_SHORT).show();
         if (view == itemView) {
-           /* contentExpanded = !contentExpanded;
-            expandedContentWrapper.setVisibility(contentExpanded ? View.VISIBLE : View.GONE);
-            content.setVisibility(contentExpanded ? View.GONE : View.VISIBLE); */
-            animateContent(!contentExpanded);
-
+            if (getDelegate() != null) {
+                getDelegate().onItemClicked(ItemAdapter.this, rssItem);
+            }
         } else {
             Toast.makeText(view.getContext(), "Visit " + rssItem.getUrl(), Toast.LENGTH_SHORT).show();
         }
