@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public abstract class NetworkRequest<Result> {
-
     public static final int ERROR_IO = 1;
     public static final int ERROR_MALFORMED_URL = 2;
 
@@ -33,6 +32,7 @@ public abstract class NetworkRequest<Result> {
         }
         InputStream inputStream = null;
         try {
+
             inputStream = url.openStream();
         } catch (IOException e) {
             e.printStackTrace();
