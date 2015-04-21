@@ -19,7 +19,6 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/01_development_environment/MyFirstAndroidApplication" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/gen" />
       <excludeFolder url="file://$MODULE_DIR$/milestone_00_welcome_to_android_development" />
       <excludeFolder url="file://$MODULE_DIR$/milestone_01_java" />
       <excludeFolder url="file://$MODULE_DIR$/milestone_02_intro_to_android/02_first_app" />
