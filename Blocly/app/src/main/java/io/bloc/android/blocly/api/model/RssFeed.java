@@ -1,8 +1,5 @@
 package io.bloc.android.blocly.api.model;
 
-/**
- * Created by lesliesultani on 12/29/14.
- */
 public class RssFeed {
     private String title;
     private String description;

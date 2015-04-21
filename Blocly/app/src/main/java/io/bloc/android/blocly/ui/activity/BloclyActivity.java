@@ -1,12 +1,11 @@
 package io.bloc.android.blocly.ui.activity;
 
-import android.animation.ValueAnimator;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -15,19 +14,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.bloc.android.blocly.BloclyApplication;
 import io.bloc.android.blocly.R;
+import io.bloc.android.blocly.api.DataSource;
 import io.bloc.android.blocly.api.model.RssFeed;
 import io.bloc.android.blocly.api.model.RssItem;
 import io.bloc.android.blocly.ui.adapter.ItemAdapter;
@@ -47,22 +44,18 @@ public class BloclyActivity extends ActionBarActivity
     private Menu menu;
     private View overflowButton;
 
+    private BroadcastReceiver dataSourceBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            itemAdapter.notifyDataSetChanged();
+            navigationDrawerAdapter.notifyDataSetChanged();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blocly);
-
-        /* assignment */
-        // you can make this more readable by printing the load label of each ResolveInfo, I'm just lazy
-        List<ResolveInfo> openWebPage =
-                getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_VIEW), PackageManager.MATCH_DEFAULT_ONLY);
-        List<ResolveInfo> dialPhoneNumber =
-                getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_CALL), PackageManager.MATCH_DEFAULT_ONLY);
-        List<ResolveInfo> composeEmail =
-                getPackageManager().queryIntentActivities(new Intent(Intent.ACTION_SENDTO), PackageManager.MATCH_DEFAULT_ONLY);
-        Log.v("OPEN WEB PAGE", openWebPage.toString());
-        Log.v("DIAL PHONE NUMBER", dialPhoneNumber.toString());
-        Log.v("COMPOSE EMAIL", composeEmail.toString());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tb_activity_blocly);
         setSupportActionBar(toolbar);
@@ -91,10 +84,6 @@ public class BloclyActivity extends ActionBarActivity
                 }
                 for (int i = 0; i < menu.size(); i++) {
                     MenuItem item = menu.getItem(i);
-                    if (item.getItemId() == R.id.action_share
-                            && itemAdapter.getExpandedItem() == null) {
-                        continue;
-                    }
                     item.setEnabled(true);
                     Drawable icon = item.getIcon();
                     if (icon != null) {
@@ -123,10 +112,6 @@ public class BloclyActivity extends ActionBarActivity
                 }
                 for (int i = 0; i < menu.size(); i++) {
                     MenuItem item = menu.getItem(i);
-                    if (item.getItemId() == R.id.action_share
-                            && itemAdapter.getExpandedItem() == null) {
-                        continue;
-                    }
                     Drawable icon = item.getIcon();
                     if (icon != null) {
                         icon.setAlpha((int) ((1f - slideOffset) * 255));
@@ -156,6 +141,8 @@ public class BloclyActivity extends ActionBarActivity
         navigationRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         navigationRecyclerView.setItemAnimator(new DefaultItemAnimator());
         navigationRecyclerView.setAdapter(navigationDrawerAdapter);
+
+        registerReceiver(dataSourceBroadcastReceiver, new IntentFilter(DataSource.ACTION_DOWNLOAD_COMPLETED));
     }
 
     @Override
@@ -175,25 +162,7 @@ public class BloclyActivity extends ActionBarActivity
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        if (item.getItemId() == R.id.action_share) {
-            RssItem itemToShare = itemAdapter.getExpandedItem();
-            if (itemToShare == null) {
-                return false;
-            }
-
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-
-            shareIntent.putExtra(Intent.EXTRA_TEXT,
-                    String.format("%s (%s)", itemToShare.getTitle(), itemToShare.getUrl()));
-
-            shareIntent.setType("text/plain");
-
-            Intent chooser = Intent.createChooser(shareIntent, getString(R.string.share_chooser_title));
-
-            startActivity(chooser);
-        } else {
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
 
@@ -204,8 +173,13 @@ public class BloclyActivity extends ActionBarActivity
         }
         getMenuInflater().inflate(R.menu.blocly, menu);
         this.menu = menu;
-        animateShareItem(itemAdapter.getExpandedItem() != null);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(dataSourceBroadcastReceiver);
     }
 
     /*
@@ -271,10 +245,8 @@ public class BloclyActivity extends ActionBarActivity
             itemAdapter.notifyItemChanged(positionToContract);
         }
         if (positionToExpand > -1) {
-            animateShareItem(true);
             itemAdapter.notifyItemChanged(positionToExpand);
         } else {
-            animateShareItem(false);
             return;
         }
 
@@ -285,34 +257,5 @@ public class BloclyActivity extends ActionBarActivity
 
         View viewToExpand = recyclerView.getLayoutManager().findViewByPosition(positionToExpand);
         recyclerView.smoothScrollBy(0, viewToExpand.getTop() - lessToScroll);
-    }
-
-    @Override
-    public void onVisitClicked(ItemAdapter itemAdapter, RssItem rssItem) {
-        Intent visitIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(rssItem.getUrl()));
-        startActivity(visitIntent);
-    }
-
-     /*
-      * Private methods
-      */
-
-    private void animateShareItem(final boolean enabled) {
-        MenuItem shareItem = menu.findItem(R.id.action_share);
-        if (shareItem.isEnabled() == enabled) {
-            return;
-        }
-        shareItem.setEnabled(enabled);
-        final Drawable shareIcon = shareItem.getIcon();
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(enabled ? new int[]{0, 255} : new int[]{255, 0});
-        valueAnimator.setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
-        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                shareIcon.setAlpha((Integer) animation.getAnimatedValue());
-            }
-        });
-        valueAnimator.start();
     }
 }
