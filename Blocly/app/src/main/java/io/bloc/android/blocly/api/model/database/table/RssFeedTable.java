@@ -38,21 +38,25 @@ public class RssFeedTable extends Table {
         return getString(cursor, COLUMN_LINK);
     }
 
-    // #3b
+
     public static String getFeedURL(Cursor cursor) {
         return getString(cursor, COLUMN_FEED_URL);
     }
 
-    // #3c
+
     public static String getTitle(Cursor cursor) {
         return getString(cursor, COLUMN_TITLE);
     }
 
-    // #3d
+
     public static String getDescription(Cursor cursor) {
         return getString(cursor, COLUMN_DESCRIPTION);
     }
 
+    public static Cursor fetchFeedWithURL(SQLiteDatabase readonlyDatabase, String feedURL) {
+        return readonlyDatabase.query(true, NAME, null, COLUMN_FEED_URL + " = ?", new String[]{feedURL},
+                null, null, null, null);
+    }
 
     private static final String NAME = "rss_feeds";
     private static final String COLUMN_LINK = "link";
