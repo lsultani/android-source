@@ -10,11 +10,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import io.bloc.android.blocly.api.DataSource;
 
-/**
- * Created by lesliesultani on 12/29/14.
- */
 public class BloclyApplication extends Application {
-
     // #1
     public static BloclyApplication getSharedInstance() {
         return sharedInstance;
@@ -33,15 +29,13 @@ public class BloclyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sharedInstance = this;
-        dataSource = new DataSource();
+        dataSource = new DataSource(this);
 
-        // #1
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true)
                 .cacheInMemory(true)
                 .build();
 
-// #2
         ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this)
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
                 .denyCacheImageMultipleSizesInMemory()
@@ -58,5 +52,4 @@ public class BloclyApplication extends Application {
     public DataSource getDataSource() {
         return dataSource;
     }
-
 }
